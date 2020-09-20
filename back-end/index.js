@@ -94,11 +94,9 @@ app.get("/deeds", async (req, res) => {
             sqlStr = sqlStr + addAssigner;
         };
         const allDeeds = await pool.query(sqlStr);
-        console.log(sqlStr);
-        console.log(allDeeds);
         res.send(allDeeds.rows);
     } catch (err) {
-        console.log(err.message);
+        console.error(err.message);
     }
 });
 
@@ -120,11 +118,9 @@ app.get("/upcoming_deeds", async (req, res) => {
             sqlStr = sqlStr + addAssigned;
         };
         const allAssignedDeeds = await pool.query(sqlStr);
-        console.log(sqlStr);
-        console.log(allAssignedDeeds);
         res.send(allAssignedDeeds.rows);
     } catch (err) {
-        console.log(err.message);
+        console.error(err.message);
     }
 });
 
@@ -245,6 +241,37 @@ app.delete("/deed/:id", async (req, res) => {
     }
 })
 
+// get a user's ratings
+app.get("/user/:id/ratings", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userRatings = await pool.query(`
+            SELECT trunc(AVG(r.rating), 1) as averageRating
+            FROM users AS u
+            JOIN ratings AS r on u.id=r.user_id
+            WHERE u.id=${id}
+            GROUP BY u.id;
+        `);
+        if (userRatings.rowCount > 0) {
+            res.json(userRatings.rows[0]);
+        } else {
+            res.json({ averageRating: 'N/A' });
+        }
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//create a rating
+app.post("/rating", async (req, res) => {
+    try {
+        const { user_id, rating } = req.body;
+        const newRating = await pool.query("INSERT INTO ratings (user_id, rating) VALUES ($1,$2) returning *", [user_id, rating]);
+        res.json(newRating.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 
 
 // chat

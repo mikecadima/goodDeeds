@@ -23,8 +23,6 @@ import CompletedDeeds from "./components/CompletedDeeds";
 
 
 
-
-
 const App = () => {
   let query = new URLSearchParams(window.location.search);
   const {isAuthenticated, isLoading, user, loginWithRedirect} = useAuth0();
