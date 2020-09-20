@@ -13,7 +13,7 @@ goodDeeds is a virtual marketplace where volunteers and organizations, or indivi
 **Contributions:** Designed and implemented search query using Active.com API Event Search. Assisted with Style and Layout Design. Oversaw organization of all javascript files and implementations. Created Contact page. 
 
 ### Mike Cadima: https://github.com/mikecadima
-### https://mikecadima.github.io/portfolio/
+### portfolio: https://mikecadima.github.io/portfolio/
 **Primary team role:** Front-End markup and styling, concepting and Javascript Function writer, 
 
 **Contributions:** Oversaw creation of Landing Page of project application. Implemented "slideable" menu and created div block with data from Weather API and a time counter function. 
@@ -146,12 +146,7 @@ app.get("/user/:id/ratings", async (req, res) => {
 });
 
 // -----------------------------------------------------
-// Allows user to toggle button to change background color
-const chk = document.getElementById('chk');
-chk.addEventListener('change', (cards) => {
-  document.body.classList.toggle('dark');
-  closeSlideMenu()
-});
+
 ```
 ### Front-end rendering of all deeds through mapping
 ``` javascript
@@ -270,23 +265,6 @@ export default function DeedsList() {
         </section>
     );
 } 
-```
-### This is the actual data fetch.
-```javascript
-//Fetching the data from the API
-import {activeKey, proxy} from "../config.js";
-import fillPage from './fillPage.js'
-
-function storePage(activity, page, date, radius){
-    fetch(`${proxy}http://api.amp.active.com/v2/search?query=${activity}&current_page=${page}&category=event&near=Atlanta,GA,US&start_date=${date}&radius=${radius}&api_key=${activeKey}`, {
-    })
-    .then(resp=>resp.json())
-    .then(json=>{
-        fillPage(json.results)
-    })
-}
-
-export default storePage
 ```
 ### Function that will determine picture that will render based on category type
 ``` javascript
