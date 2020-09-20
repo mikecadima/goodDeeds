@@ -37,4 +37,4 @@ CREATE TABLE ratings(
     user_id INT,
     rating INT check(rating >=1 and rating <=5)
 );
-ALTER TABLE ratings ADD CONSTRAINT user_rating_id_fk foreign key (id) references users(id);
+ALTER TABLE ratings ADD CONSTRAINT user_rating_id_fk foreign key (user_id) references users(id);

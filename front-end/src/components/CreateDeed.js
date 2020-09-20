@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router";
+import RatingBadge from '../components/Rating/RatingBadge';
 // import { useAuth0 } from "@auth0/auth0-react";
 export default function CreateDeed(props) {
 	// deeds
@@ -55,7 +56,7 @@ export default function CreateDeed(props) {
 								<span class="tag is-light">{location}</span>
 							</div>
 							{/* screen title */}
-							<h1 class="title is-size-1">Created goodDeed</h1>
+							<h1 class="title is-size-1">Create goodDeed</h1>
 						</div>
 						<div>
 							{/* avatar */}
@@ -76,8 +77,9 @@ export default function CreateDeed(props) {
 												<p>
 													<strong>{name}</strong> <br />
 													<small>@{userName}</small>{" "}
-													<span class="tag is-success is-normal">Rating</span>{" "}
-													<small>100%</small>
+													<RatingBadge userId={window.sessionStorage.getItem('users_id')}
+															badgeSize="is-normal">
+													</RatingBadge>
 												</p>
 											</div>
 										</div>

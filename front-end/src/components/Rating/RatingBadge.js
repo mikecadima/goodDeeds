@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const RatingBadge = ({ userId }) => {
+const RatingBadge = ({ userId, badgeSize, refreshRating }) => {
     const [userRating, setUserRating] = useState(0);
     const [ratingLoaded, setRatingLoaded] = useState(false);
 
@@ -15,13 +15,17 @@ const RatingBadge = ({ userId }) => {
         getUserRatings();
     }, []);
 
+    useEffect(() => {
+        getUserRatings();
+    }, [refreshRating]);
+
     if (!ratingLoaded) {
         return <span>Loading ...</span>;
     }
 
     return (
-        <span className="tag is-success is-large">
-            { userRating.averageRating }{ userRating.averageRating !== 'N/A' ? '%' : '' }
+        <span className={`tag is-success ${badgeSize}`}>
+            Rating: { userRating.rating }
         </span>
     )
 }

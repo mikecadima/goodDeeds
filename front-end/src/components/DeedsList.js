@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import RatingBadge from '../components/Rating/RatingBadge';
 
 export default function DeedsList() {
     return (
@@ -33,8 +34,9 @@ export default function DeedsList() {
                                             <p>
                                                 <strong>{window.sessionStorage.getItem("name")}</strong> <br />
                                                 <small>@{window.sessionStorage.getItem("username")}</small>{" "}
-                                                <span className="tag is-success is-normal">Rating</span>{" "}
-                                                <small>100%</small>
+                                                <RatingBadge userId={window.sessionStorage.getItem('users_id')}
+                                                    badgeSize="is-normal">
+                                                </RatingBadge>
                                                 <br />
                                             </p>
                                         </div>

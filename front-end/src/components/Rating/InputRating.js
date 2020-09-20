@@ -1,40 +1,34 @@
 import React, { useState } from 'react';
-const InputRating = ({ onRatingAdded }) => {
-    const [user_id, setUser_id] = useState("");
+const InputRating = ({ userId, onRated }) => {
     const [rating, setRating] = useState("");
+    const [userRated, setUserRated] = useState(false);
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
-            const body = { user_id, rating };
-            const response = await fetch("http://localhost:5000/rating", {
+            const body = { rating };
+            await fetch(`http://localhost:5000/user/${userId}/rating`, {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(body)
             });
-            let results = await response.json();
-            onRatingAdded(results);
+            setUserRated(true);
+            onRated();
         } catch (err) {
             console.error(err.message);
         }
     }
+
+    if (userRated) {
+        return <div>User Rated!</div>
+    }
+
     return (
         <>
-            <h1 className="text-center my-5">Rate a Volunteer</h1>
             <form className="d-flex" onSubmit={onSubmitForm}>
                 <div>
                     <div>
-                        <h2>Select Volunteer</h2>
-                        <div include="form-input-select()">
-                            <select type="text" className="form control" value={user_id} onChange={e => setUser_id(e.target.value)}>
-                                <option>--Select--</option>
-                                <option value="1">PJ Almeida</option>
-                                <option value="2">Peter Almeida</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="label">Rating 1-5: </label>
-                        <div class="tags has-addons">
+                        <label className="label">Rating 1-5: </label>
+                        <div className="select">
                             <select type="text" className="form control" value={rating} onChange={e => setRating(e.target.value)}>
                                 <option>--Select--</option>
                                 <option>1</option>
@@ -45,7 +39,7 @@ const InputRating = ({ onRatingAdded }) => {
                             </select>
                         </div>
                     </div>
-                    <button className="btn btn-success">Add</button>
+                    <button className="button is-success margin-top-2">Add</button>
                 </div>
             </form>
         </>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import RatingBadge from '../components/Rating/RatingBadge';
+import InputRating from '../components/Rating/InputRating';
 
 const PublicProfile = (props) => {
     const [profileData, setProfileData] = useState({});
     const [profileLoaded, setProfileLoaded] = useState(false);
+    const [refreshRating, setRefreshRating] = useState(false);
 
     async function getProfileInfo() {
 		const resp = await fetch(`http://localhost:5000/user_profile/${props.match.params.email}`)
@@ -15,6 +17,10 @@ const PublicProfile = (props) => {
     useEffect(() => {
         getProfileInfo();
     }, []);
+
+    const ratingAdded = () => {
+        setRefreshRating(!refreshRating);
+    };
 
     if (!profileLoaded) {
         return <div>Loading ...</div>;
@@ -90,8 +96,9 @@ const PublicProfile = (props) => {
                                 <h3 className="mt-4">
                                     <strong>GoodDeed Rating</strong>
                                 </h3>
-                                <RatingBadge userId={profileData.id}></RatingBadge>
-                                {/* <span className="tag is-success is-large">100%</span> */}
+                                <RatingBadge userId={profileData.id} badgeSize="is-large" refreshRating={refreshRating}></RatingBadge>
+                                {/* Rate this User */}
+                                <InputRating userId={profileData.id} onRated={ratingAdded}></InputRating>
                             </div>
                         </div>
                     </section>
