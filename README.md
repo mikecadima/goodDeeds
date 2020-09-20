@@ -31,12 +31,12 @@ goodDeeds is a virtual marketplace where volunteers and organizations, or indivi
 
 ## What we used:
 ### Languages/Frameworks/Libraries:
+- PostgreSQL
+- Express
 - Reactjs Hooks
+- Node
 - CSS
 - Javascript
-- Postgresql
-- Node
-- Express
 - Bulma
 
 ### APIs/Critical Dependencies
@@ -92,6 +92,10 @@ ___
 ### ***Challenge:*** Creating a rating system for users.
 
 ### ***Solution:*** Utilizing average of all ratings in a ratings table then joining that information with users on the "user_id" columns.
+
+![goodDeeds - Create_Deed_0](https://user-images.githubusercontent.com/63179764/93724660-19c14d00-fb77-11ea-8c3e-53e96b5eef28.jpg)
+![goodDeeds - Public_Profile_0](https://user-images.githubusercontent.com/63179764/93724661-204fc480-fb77-11ea-830f-57f15d055780.jpg)
+![goodDeeds - brainstorm_database_schema](https://user-images.githubusercontent.com/63179764/93724666-2cd41d00-fb77-11ea-844b-4d58d3cf4596.jpg)
 
 ## Code Snippets:
 ### Our main Javascript file displays the Slider Feature of the menu and Light/Dark mode code.
