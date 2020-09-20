@@ -95,29 +95,55 @@ ___
 
 ![goodDeeds - Create_Deed_0](https://user-images.githubusercontent.com/63179764/93724660-19c14d00-fb77-11ea-8c3e-53e96b5eef28.jpg)
 ![goodDeeds - Public_Profile_0](https://user-images.githubusercontent.com/63179764/93724661-204fc480-fb77-11ea-830f-57f15d055780.jpg)
-![goodDeeds - brainstorm_database_schema](https://user-images.githubusercontent.com/63179764/93724666-2cd41d00-fb77-11ea-844b-4d58d3cf4596.jpg)
+
 
 ## Code Snippets:
-### Our main Javascript file displays the Slider Feature of the menu and Light/Dark mode code.
+### PostgreSQL snippets from the back-end Index.js file
 ``` javascript
 
-//Code for Slider Menu
-function openSlideMenu(){
-    document.getElementById('menu').style.width='250px';
-}
-function closeSlideMenu(){
-    document.getElementById('menu').style.width='0';
-}
+// deeds list
+app.get("/deeds_list", async (req, res) => {
+    try {
+        // filter status conditions
+        const { assignerId } = req.query;
+        let sqlStr = `
+            SELECT 
+                d.id, d.category, d.title, d.description, d.location, d.date_created, 
+                d.date_todo, d.status, u.name, u.username, u.picture, u.email 
+            FROM deeds AS d 
+            JOIN users AS u 
+            ON d.assigner_id=u.id`;
+        let addAssigner = ` AND d.assigner_id=${assignerId}`;
+        if (assignerId) {
+            sqlStr = sqlStr + addAssigner;
+        };
+        const allDeeds = await pool.query(sqlStr);
+        res.send(allDeeds.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
-let menuOpen = document.getElementById('menu-open')
-menuOpen.addEventListener('click', ()=>{
-    openSlideMenu()
-})
-
-let menuClose = document.getElementById('menu-close')
-menuClose.addEventListener('click', ()=>{
-    closeSlideMenu()
-})
+//get a user's average ratings
+app.get("/user/:id/ratings", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userRatings = await pool.query(`
+            SELECT trunc(AVG(r.rating), 1) as rating
+            FROM users AS u
+            JOIN ratings AS r on u.id=r.user_id
+            WHERE u.id=${id}
+            GROUP BY u.id;
+        `);
+        if (userRatings.rowCount > 0) {
+            res.json(userRatings.rows[0]);
+        } else {
+            res.json({ rating: 'N/A' });
+        }
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 // -----------------------------------------------------
 // Allows user to toggle button to change background color
@@ -127,36 +153,123 @@ chk.addEventListener('change', (cards) => {
   closeSlideMenu()
 });
 ```
-### This code allows the user to submit a search based on a query.
+### Front-end rendering of all deeds through mapping
 ``` javascript
- //Allows user to search based on query 
-import startSearch from './startSearch.js'
-import nextPage from './nextPage.js'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Moment from "react-moment";
+import 'moment-timezone';
+import RatingBadge from './Rating/RatingBadge';
 
-let page = 1
+export default function DeedsList() {
+    const [deeds, setDeeds] = useState([]);
 
-let submitSearch = document.getElementById('Search')
-submitSearch.addEventListener('click', ()=>{
-    let inpActivity = document.getElementById('inpActivity').value
-    let inpRadius = document.getElementById('inpRadius').value
-    let inpDate = document.getElementById('inpDate').value
-    let continuousDate = inpDate + '..'
-    page = 1
+    async function getDeeds() {
+        const response = await fetch("http://localhost:5000/deeds_list?" + new URLSearchParams({
+            assignerId: window.sessionStorage.getItem('users_id')
+        }));
+        const deedArray = await response.json();
+        setDeeds(deedArray);
+    }
+    useEffect(() => {
+        getDeeds();
+    }, []);
 
-    return startSearch(inpActivity, page, continuousDate, inpRadius)
-})
-
-let nextButton = document.getElementById('next')
-nextButton.addEventListener('click', ()=>{
-    page += 1
-
-    let inpActivity = document.getElementById('inpActivity').value
-    let inpRadius = document.getElementById('inpRadius').value
-    let inpDate = document.getElementById('inpDate').value
-    let continuousDate = inpDate + '..'
-
-    nextPage(inpActivity, page, continuousDate, inpRadius)
-})
+    return (
+        <section>
+            <div class="container">
+                <section class="section">
+                    <div class="container">
+                        <div>
+                            <span class="tag is-light">{window.sessionStorage.getItem('location')}</span>
+                        </div>
+                        {/* screen title */}
+                        <h1 class="title is-size-1">Deeds List</h1>
+                    </div>
+                    <div>
+                        <section>
+                            {/* avatar */}
+                            <div class="container">
+                                <article class="media">
+                                    <Link to={`/public_profile/${window.sessionStorage.getItem('email')}`}>
+                                        <figure className="image is-48x48">
+                                            <img
+                                                className="is-rounded"
+                                                src={window.sessionStorage.getItem('picture')}
+                                                alt="owners profile"
+                                            />
+                                        </figure>
+                                    </Link>
+                                    {/* user info */}
+                                    <div className="media-content">
+                                        <div className="content">
+                                            <p>
+                                                <strong>{window.sessionStorage.getItem("name")}</strong> <br />
+                                                <small>@{window.sessionStorage.getItem("username")}</small>{" "}
+                                                <RatingBadge userId={window.sessionStorage.getItem('users_id')}
+                                                    badgeSize="is-normal">
+                                                </RatingBadge>
+                                                <br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <br />
+                                <label className="label">Deeds</label>
+                                {/* deeds table start */}
+                                <table class="table is-fullwidth">
+                                    {/* table headers */}
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <abbr title="id">id</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="deed_name">Deed Name</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="categoty">Category</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="location">Location</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="date">Requested Date</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="request_date">Requested Time</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="status">Status</abbr>
+                                            </th>
+                                        </tr>
+                                        {/* table row */}
+                                        {deeds.map((deed, idx) => (
+                                            <tr key={idx}>
+                                                <th id="deed_id">{deed.id}</th>
+                                                <td id="deed_name">
+                                                    <Link to={`/details/${deed.id}`}>
+                                                        {deed.title}
+                                                    </Link>{" "}
+                                                </td>
+                                                <td id="category">{deed.category}</td>
+                                                <td id="location">{deed.location}</td>
+                                                <td id="date"><Moment format="MM/DD/YYYY">{deed.date_todo}</Moment></td>
+                                                <td id="request_date"><Moment format="hh:mm A">{deed.date_todo}</Moment></td>
+                                                <td id="status">{deed.status}</td>
+                                            </tr>
+                                        ))}
+                                        {/* table row end */}
+                                    </thead>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </section>
+    );
+} 
 ```
 ### This is the actual data fetch.
 ```javascript
@@ -175,62 +288,22 @@ function storePage(activity, page, date, radius){
 
 export default storePage
 ```
-### This code constructs our Weather data from the API
+### Function that will determine picture that will render based on category type
 ``` javascript
-//greet and time
-const time = document.getElementById('time'),
-greeting = document.getElementById('greeting'),
-name = document.getElementById('name'),
-focus = document.getElementById('focus');
 
-// Options
-const showAmPm = true;
-
-// Show Time
-function showTime() {
-    let today = new Date(),
-    hour = today.getHours(),
-    min = today.getMinutes(),
-    sec = today.getSeconds();
-
-    // Set AM or PM
-    const amPm = hour >= 12 ? 'PM' : 'AM';
-
-    // 12hr Format
-    hour = hour % 12 || 12;
-
-    // Output Time
-    time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(
-        sec
-    )} ${showAmPm ? amPm : ''}`;
-
-    setTimeout(showTime, 1000);
-}
-
-// Add Zeros
-function addZero(n) {
-    return (parseInt(n, 10) < 10 ? '0' : '') + n;
-}
-
-// Run
-showTime();
+	const matchTagImg = (deed) => {
+		if (deed.category === "Black Lives Matter") {
+			return "https://i.imgur.com/ROvf215.png"
+		} else if (deed.category === "Senior") {
+			return "https://i.imgur.com/TOHpmYW.png"
+		} else if (deed.category === "LBGTQ") {
+			return "https://i.imgur.com/AAgWHo0.png"
+		} else {
+			return "https://i.imgur.com/YU649NJ.png"
+		}
+	}
 
 
-fetch('http://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=6a899e0702d3b935e5d01d1b77ea6d59')
-.then(resp=>resp.json())
-.then(json=>{
-    let city = json.name
-    let tempKelv = json.main.temp
-    let tempF = (tempKelv - 273.15) * 9/5 + 32
-    let roundedTemp = Math.round(tempF)
-    let temp = document.getElementById('temp')
-    temp.innerText = roundedTemp + '°'
-    let newCity = document.getElementById('city')
-    newCity.append(city)
-    let humidity = json.main.humidity
-    let humidityDiv = document.getElementById('humidity')
-    humidityDiv.innerText = humidity + '% Humidity'
-})
 ```
 ## Demo of search feature
 [![Fit Pals demo](http://img.youtube.com/vi/W_FmXOzzQYU/0.jpg)](https://youtu.be/W_FmXOzzQYU)
