@@ -19,6 +19,7 @@ goodDeeds is a virtual marketplace where volunteers and organizations, or indivi
 **Contributions:** Oversaw creation of Landing Page of project application. Implemented "slideable" menu and created div block with data from Weather API and a time counter function. 
 
 ### PJ Almeida: https://github.com/palmeida7
+### portfolio: https://palmeida7.github.io/portfolio/
 **Primary team role:** Database architect, Javascript Function writer, Concept and content developer
 
 **Contributions:** Created back-end routes and front-end logic to communicate and update database queries. Created CRUD (Create-Read-Update-Delete) functionality for application.
