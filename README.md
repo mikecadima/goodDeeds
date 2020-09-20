@@ -1,5 +1,5 @@
 # goodDeeds
-![rmbanner](https://user-images.githubusercontent.com/63179764/87181998-47556480-c2b1-11ea-98f7-b886a0f5f031.jpg)
+![goodDeeds _ logo](https://user-images.githubusercontent.com/63179764/93724641-f4ccda00-fb76-11ea-96d0-06902c45c0e7.png)
 ## Overview: 
 goodDeeds is a virtual marketplace where volunteers and organizations, or individuals, may meet for the purpose of collaborating to accomplish acts of kindness. These acts may be as simple as spending time with members of the Senior Community, or just as grand such as small business consulations for Black-Owned businesses, or organzing to demonstrate advocacy for LGBTQ rights. The platform will promote sharing information through emails, meetings through a real time chat or organizing a group meet-up. No matter how small or grand the topic, goodDeeds provides a safe environment for collaborators, and those with needs, to link up and accomplish good deeds together. 
 
