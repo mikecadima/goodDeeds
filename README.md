@@ -13,6 +13,7 @@ goodDeeds is a virtual marketplace where volunteers and organizations, or indivi
 **Contributions:** Designed and implemented search query using Active.com API Event Search. Assisted with Style and Layout Design. Oversaw organization of all javascript files and implementations. Created Contact page. 
 
 ### Mike Cadima: https://github.com/mikecadima
+### https://mikecadima.github.io/portfolio/
 **Primary team role:** Front-End markup and styling, concepting and Javascript Function writer, 
 
 **Contributions:** Oversaw creation of Landing Page of project application. Implemented "slideable" menu and created div block with data from Weather API and a time counter function. 
@@ -26,6 +27,7 @@ goodDeeds is a virtual marketplace where volunteers and organizations, or indivi
 **Primary team role:** Lead UI/UX Designer; Front-End markup and styling, concepting and Javascript Function writer
 
 **Contributions:** Created visual process flow of application. Oversaw creative layout design of webpages. Created About page.
+![goodDeeds - Deeds_Available_0](https://user-images.githubusercontent.com/63179764/93724664-2776d280-fb77-11ea-8545-d510a7582f58.jpg)
 
 ## What we used:
 ### Languages/Frameworks/Libraries:
