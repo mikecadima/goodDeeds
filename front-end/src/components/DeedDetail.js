@@ -12,7 +12,7 @@ export default function DeedDetail(props) {
 	const id = props.match.params.id;
 	const userId = window.sessionStorage.getItem("users_id"); // rename to userid
 	const [goThrough, setGoThrough] = useState(false);
-	const [doneDeed, setDoneDeed] = useState(false);
+	const doneDeed = false;
 	const [isOwner, setIsOwner] = useState(false);
 	const [loadingAssignedUser, setLoadingAssignedUser] = useState(true);
 

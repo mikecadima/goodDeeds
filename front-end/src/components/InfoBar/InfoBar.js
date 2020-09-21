@@ -6,12 +6,12 @@ import onlineIcon from '../../icons/onlineIcon.png';
 import './InfoBar.css';
 
 const InfoBar = ({room}) => (
-    <div className="infoBar">
-        <div className="leftInnerContainer">
-            <img className="onlineIcon" src={onlineIcon} alt="online"/>
+    <div className="ib-infoBar">
+        <div className="ib-leftInnerContainer">
+            <img className="ib-onlineIcon" src={onlineIcon} alt="online"/>
             <h3>{room}</h3>
         </div>
-        <div className="rightInnerContainer">
+        <div className="ib-rightInnerContainer">
             <a href="/"><img src={closeIcon} alt="close" /></a>
         </div>
     </div>

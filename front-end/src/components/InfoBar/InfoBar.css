@@ -1,14 +1,14 @@
-/* .infoBar {
+.ib-infoBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #2979FF;
+    background: #ed6f2f;
     border-radius: 4px 4px 0 0;
     height: 60px;
     width: 100%;
 }
 
-.leftInnerContainer {
+.ib-leftInnerContainer {
     flex: 0.5;
     display: flex;
     align-items: center;
@@ -16,13 +16,13 @@
     color: white;
 }
 
-.rightInnerContainer {
+.ib-rightInnerContainer {
     display: flex;
     flex: 0.5;
     justify-content: flex-end;
     margin-right: 5%;
 }
 
-.onlineIcon {
+.ib-onlineIcon {
     margin-right: 5%;
-} */
+}

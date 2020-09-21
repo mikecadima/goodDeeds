@@ -25,7 +25,7 @@ export default function AvailablDeeds() {
 		} else if (deed.category === "Senior") {
 			return "https://i.imgur.com/TOHpmYW.png"
 		} else if (deed.category === "LGBTQ") {
-			return "https://i.imgur.com/AAgWHo0.png"
+			return "https://i.imgur.com/UxZLO9f.png"
 		} else {
 			return "https://i.imgur.com/YU649NJ.png"
 		}

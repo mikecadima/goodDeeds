@@ -107,7 +107,7 @@ export default function AboutUs() {
 									<div class="media-content">
 										<p class="title is-4">PJ Almeida</p>
 										<p class="subtitle is-6">
-											<a href="https://github.com/palmeida7" target="_blank">
+											<a href="https://github.com/palmeida7" target="_blank" rel="noopener noreferrer"> 
 												@palmeida7
 											</a>
 										</p>
@@ -123,7 +123,7 @@ export default function AboutUs() {
 
 								<div class="content">
 									{/* team member portfolio */}
-									<a href="https://github.com/palmeida7" target="_blank">
+									<a href="https://github.com/palmeida7" target="_blank" rel="noopener noreferrer">
 										<button class="button is-info mt-3 ">Learn More</button>
 									</a>
 									<button class="button is-black mt-3 is-pulled-right is-hidden">
@@ -163,7 +163,7 @@ export default function AboutUs() {
 									<div class="media-content">
 										<p class="title is-4">Eric Yim</p>
 										<p class="subtitle is-6">
-											<a href="https://github.com/tknyim" target="_blank">
+											<a href="https://github.com/tknyim" target="_blank" rel="noopener noreferrer">
 												@tknyim
 											</a>
 										</p>
@@ -179,7 +179,7 @@ export default function AboutUs() {
 
 								<div class="content">
 									{/* team member portfolio */}
-									<a href="https://github.com/tknyim" target="_blank">
+									<a href="https://github.com/tknyim" target="_blank" rel="noopener noreferrer">
 										<button class="button is-info mt-3 ">Learn More</button>
 									</a>
 									<button class="button is-black mt-3 is-pulled-right is-hidden">
@@ -219,7 +219,7 @@ export default function AboutUs() {
 									<div class="media-content">
 										<p class="title is-4">Ivan Davis</p>
 										<p class="subtitle is-6">
-											<a href="https://github.com/techbyivan" target="_blank">
+											<a href="https://github.com/techbyivan" target="_blank" rel="noopener noreferrer">
 												@techbyivan
 											</a>
 										</p>
@@ -235,7 +235,7 @@ export default function AboutUs() {
 
 								<div class="content">
 									{/* team member portfolio  */}
-									<a href="https://github.com/techbyivan" target="_blank">
+									<a href="https://github.com/techbyivan" target="_blank" rel="noopener noreferrer">
 										<button class="button is-info mt-3 ">Learn More</button>
 									</a>
 									<button class="button is-black mt-3 is-pulled-right is-hidden">
