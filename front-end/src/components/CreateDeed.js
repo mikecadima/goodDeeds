@@ -167,7 +167,7 @@ export default function CreateDeed(props) {
 									<option value="" disabled hidden>Choose An Interest Area</option>
 									<option>Senior</option>
 									<option>Black Lives Matter</option>
-									<option>LBGTQ</option>
+									<option>LGBTQ</option>
 								</select>
 							</div>
 						</div>
