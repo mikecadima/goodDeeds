@@ -10,7 +10,7 @@ export default function MiniProfile({ usersInfo }) {
                     <figure className="image is-48x48">
                         <img
                             className="is-rounded"
-                            src={window.sessionStorage.getItem('picture')}
+                            src={usersInfo.picture}
                             alt="owners profile"
                         />
                     </figure>

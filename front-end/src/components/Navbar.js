@@ -9,14 +9,14 @@ export default function Navbar() {
         <Fragment>
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <a href="/" className="navbar-item">
+                    <Link to={"/explore"} className="navbar-item">
                         <img
                             src="https://i.imgur.com/9I88eKA.png"
                             alt="Logo"
                             width="auto"
                             height="auto"
                         />
-                    </a>
+                    </Link>
                     <p
                         
                         onClick={() => {

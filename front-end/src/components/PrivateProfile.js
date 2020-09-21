@@ -193,8 +193,14 @@ const PrivateProfile = (props) => {
                                         value={location || ""}
                                         onChange={e => setLocation(e.target.value)}
                                         placeholder="Choose a location">
-                                        <option> -- Location -- </option>
+                                        <option value="" disabled hidden> Locations in GA </option>
                                         <option>Atlanta, GA</option>
+                                        <option>Brookhaven, GA</option>
+                                        <option>Buford, GA</option>
+                                        <option>Duluth, GA</option>
+                                        <option>Cumming, GA</option>
+                                        <option>Marietta, GA</option>
+                                        <option>Sandy Springs, GA</option>
                                         <option>Virtual/Remote</option>
                                     </select>
                                 </div>
