@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RatingBadge from './Rating/RatingBadge';
 import InputRating from './Rating/InputRating';
+import ContactUs from './Contactus';
 
 const PublicProfile = (props) => {
     const [profileData, setProfileData] = useState({});
@@ -88,6 +89,10 @@ const PublicProfile = (props) => {
                                     <strong>Location</strong>
                                 </h3>
                                 <h4>{profileData.location}</h4>
+                                <h3>
+                                    <strong>Email</strong>
+                                </h3>
+                                <h4>{profileData.email}</h4>
                                 {/* short bio */}
                                 <h3 className="mt-4">
                                     <strong>Short Bio</strong>
@@ -103,6 +108,7 @@ const PublicProfile = (props) => {
                                 <RatingBadge userId={profileData.id} badgeSize="is-large" refreshRating={refreshRating}></RatingBadge>
                                 {/* Rate this User */}
                                 <InputRating userId={profileData.id} onRated={ratingAdded}></InputRating>
+                                <ContactUs />
                             </div>
                         </div>
                     </section>
