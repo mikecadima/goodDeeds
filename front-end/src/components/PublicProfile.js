@@ -56,7 +56,7 @@ const PublicProfile = (props) => {
                                                 <img
                                                     className="is-rounded"
                                                     src={profileData.picture}
-                                                />
+                                                alt=""/>
                                             </p>
                                         </figure>
                                         {/* user full name */}
@@ -79,7 +79,7 @@ const PublicProfile = (props) => {
                                     <span className="tag is-black">Black Lives Matter</span>
                                     <br />
                                     {/* <a className="tag is-delete mr-2"></a> */}
-                                    <span className="tag is-primary">LBGTQ</span>
+                                    <span className="tag is-primary">LGBTQ</span>
                                     <br />
                                     {/* <a className="tag is-delete mr-2"></a> */}
                                 </div>

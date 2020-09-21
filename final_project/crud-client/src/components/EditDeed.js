@@ -4,7 +4,7 @@ const EditDeed = ({deed}) =>{
     //console.log(deed);
     const editDeed = async (id)=>{
         try {
-            const body = { title, description, category, location };
+            const body = { title, description, category, location,status };
 
             const response = await fetch(`http://localhost:3440/deed/${id}`,{
                 method: "PUT",
@@ -23,12 +23,13 @@ const EditDeed = ({deed}) =>{
     const [description, setDescription] = useState(deed.description);
     const [category, setCategory] = useState(deed.category);
     const [location, setLocation] = useState(deed.location);
+    const [status, setStatus] = useState(deed.status);
     return <Fragment>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target={`#id${deed.deeds_id}`}>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target={`#id_edit${deed.deeds_id}`}>
       Edit Deed
     </button>
     
-    <div class="modal" id={`id${deed.deeds_id}`}>
+    <div class="modal" id={`id_edit${deed.deeds_id}`}>
       <div class="modal-dialog">
         <div class="modal-content">
     
@@ -41,12 +42,20 @@ const EditDeed = ({deed}) =>{
             <form>
                 <div>              
                   <select type="text" className="form control" value={category} onChange={e => setCategory(e.target.value)}>
+                    <option>--Select--</option>
                     <option>BLM</option>
                     <option>Seniors</option>
                     <option>LGBTQ</option>
                   </select>
                 </div>
-
+                <div>              
+                  <select type="text" className="form control" value={status} onChange={e => setStatus(e.target.value)}>
+                  <option>--Select--</option>
+                    <option>open</option>
+                    <option>closed</option>
+                    <option>upcoming</option>
+                  </select>
+                </div>
                 <input type="text" className="form control" value={title} onChange={e => setTitle(e.target.value)}></input>
                 <input type="text" className="form control" value={description} onChange={e => setDescription(e.target.value)}></input>
                 <input type="text" className="form control" value={location} onChange={e => setLocation(e.target.value)}></input>

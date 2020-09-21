@@ -1,34 +1,36 @@
-import React, {Fragment, useState, useEffect} from 'react';
-import SingleDeed from "./SingleDeed";
-import EditDeed from './EditDeed';
-import '../App.css';
+import React, {Fragment,useState,useEffect} from 'react'
+import SingleDeed from './SingleDeed';
 
+function AvailableDeeds() {
+    const [deed, setDeed] = useState([]);
+	const [deeds, setDeeds] = useState([]);
 
-const ListDeeds = ({deeds, setDeeds}) => {
- 
-    console.log(deeds);
-    async function deleteDeed(id) {
-        try {
-            const res = await fetch(`http://localhost:3440/deed/${id}`,{
-                method: "DELETE"
-            });
-        } catch (err) {
-            console.error(err.message)
-        }
-        window.location.reload();
-    }
+  
+      async function getDeeds(){
+          const response = await fetch("http://localhost:3440/deeds/status");
+  
+          const deedArray = await response.json();
+          console.log(deedArray);
+          setDeeds(deedArray);
+      }
+  
+      useEffect(()=>{
+          getDeeds();
+      }, []);
     return (
         <Fragment>
-            	<div class="columns">
+       <div class="columns">
 					<div class="column is-one-quarter">
 						{/* card #1 start */}
                         {deeds.map(deed=>(
+							
 						<div class="card">
+							<SingleDeed deed={deed}>Review</SingleDeed>
 							<div class="card-image">
 								<figure class="image is-4by3">
 									<img
 										// black lives matter image
-										src={deed.picture}
+										src="https://i.imgur.com/ROvf215.png"
 										alt="Placeholder image"
 									/>
 								</figure>
@@ -73,12 +75,7 @@ const ListDeeds = ({deeds, setDeeds}) => {
 									Deed Date: {deed.date_created}
 									</time>
 									<br />
-									{/* learn more */}
-									<SingleDeed deed={deed}>Review</SingleDeed>
-									<button className="btn btn-danger" onClick={()=>deleteDeed (deed.deeds_id)}>
-									Delete Deed
-									</button>
-									<EditDeed  deed={deed}>Edit</EditDeed>
+					
 								</div>
 							</div>
 						</div>
@@ -88,13 +85,5 @@ const ListDeeds = ({deeds, setDeeds}) => {
         </Fragment>
     )
 }
-export default ListDeeds;
 
-// import React, { Fragment } from "react";
-// export default function Available_GoodDeeds() {
-// 	return (
-// 		<section>
-
-// 		</section>
-// 	);
-// }
+export default AvailableDeeds;
