@@ -46,7 +46,9 @@ export default function AboutUs() {
 									<div class="media-content">
 										<p class="title is-4">Michael Cadima</p>
 										<p class="subtitle is-6">
-											<a href="https://github.com/mikecadima" target="_blank">
+											<a href="https://github.com/mikecadima" 
+											target="_blank"
+											rel="noopener noreferrer">
 												@mikecadima
 											</a>
 										</p>
@@ -62,7 +64,9 @@ export default function AboutUs() {
 
 								<div class="content">
 									{/* team member portfolio */}
-									<a href="https://github.com/mikecadima" target="_blank">
+									<a href="https://github.com/mikecadima" 
+									target="_blank"
+									rel="noopener noreferrer">
 										<button class="button is-info mt-3 ">Learn More</button>
 									</a>
 									<button class="button is-black mt-3 is-pulled-right is-hidden">

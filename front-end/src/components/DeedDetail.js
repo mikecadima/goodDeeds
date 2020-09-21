@@ -20,7 +20,7 @@ export default function DeedDetail(props) {
 		const resp = await fetch(`http://localhost:5000/deed/${props.match.params.id}`)
 		const deeds = await resp.json();
 		setDetailData(deeds);
-		if (userId == deeds.assigner_id) {
+		if (userId === deeds.assigner_id) {
 			setIsOwner(true)
 		};
 	};
