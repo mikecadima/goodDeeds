@@ -17,7 +17,7 @@ export default function DeedDetail(props) {
 	const [loadingAssignedUser, setLoadingAssignedUser] = useState(true);
 
 	async function getDeedsId() {
-		const resp = await fetch(`http://localhost:5000/deed/${props.match.params.id}`)
+		const resp = await fetch(`https://gooddeeds-server.herokuapp.com/deed/${props.match.params.id}`)
 		const deeds = await resp.json();
 		setDetailData(deeds);
 		if (userId == deeds.assigner_id) {
@@ -30,7 +30,7 @@ export default function DeedDetail(props) {
 	}, []);
 
 	async function getAssignedUser() {
-		const resp = await fetch(`http://localhost:5000/deed/${id}/assigned_users`)
+		const resp = await fetch(`https://gooddeeds-server.herokuapp.com/deed/${id}/assigned_users`)
 		let assignedUser = {};
 		if (resp.status === 200) {
 			assignedUser = await resp.json();
@@ -48,7 +48,7 @@ export default function DeedDetail(props) {
 		deedStatus = 'assigned'
 		try {
 			const body = { deedStatus, userId, id };
-			const response = await fetch(`http://localhost:5000/change_status`, {
+			const response = await fetch(`https://gooddeeds-server.herokuapp.com/change_status`, {
 				method: "PUT",
 				headers: { "Content-type": "application/json" },
 				body: JSON.stringify(body)
@@ -65,7 +65,7 @@ export default function DeedDetail(props) {
 		deedStatus = 'completed'
 		try {
 			const body = { deedStatus, userId, id };
-			const response = await fetch(`http://localhost:5000/change_status`, {
+			const response = await fetch(`https://gooddeeds-server.herokuapp.com/change_status`, {
 				method: "PUT",
 				headers: { "Content-type": "application/json" },
 				body: JSON.stringify(body)

@@ -11,7 +11,7 @@ export default function DeedAssigned(props) {
 	const [loadingAssignedUser, setLoadingAssignedUser] = useState(true);
 
 	async function getDeedsId() {
-		const resp = await fetch(`http://localhost:5000/deed/${props.match.params.id}`)
+		const resp = await fetch(`https://gooddeeds-server.herokuapp.com/deed/${props.match.params.id}`)
 		const deeds = await resp.json();
 		setDetailData(deeds);
 	};
@@ -21,7 +21,7 @@ export default function DeedAssigned(props) {
 	}, []);
 
 	async function getAssignedUser() {
-		const resp = await fetch(`http://localhost:5000/deed/${id}/assigned_users`)
+		const resp = await fetch(`https://gooddeeds-server.herokuapp.com/deed/${id}/assigned_users`)
 		let assignedUser = {};
 		if (resp.status === 200) {
 			assignedUser = await resp.json();
