@@ -287,5 +287,10 @@ export default function DeedsList() {
 
 
 ```
+### Preview of the Site
+![goodDeeds _ preview](https://i.imgur.com/CDbEoT7.gifv)
+
+
+```
 ## Demo of search feature
 [![Fit Pals demo](http://img.youtube.com/vi/W_FmXOzzQYU/0.jpg)](https://youtu.be/W_FmXOzzQYU)
