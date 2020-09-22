@@ -10,7 +10,7 @@ export default function DeedDetail(props) {
 	const [assignedUser, setAssignedUser] = useState({});
 	let deedStatus = "";
 	const id = props.match.params.id;
-	const userId = window.sessionStorage.getItem("users_id"); // rename to userid
+	const userId = window.sessionStorage.getItem("users_id");
 	const [goThrough, setGoThrough] = useState(false);
 	const [doneDeed, setDoneDeed] = useState(false);
 	const [isOwner, setIsOwner] = useState(false);
@@ -20,7 +20,7 @@ export default function DeedDetail(props) {
 		const resp = await fetch(`http://localhost:5000/deed/${props.match.params.id}`)
 		const deeds = await resp.json();
 		setDetailData(deeds);
-		if (userId === deeds.assigner_id) {
+		if (userId == deeds.assigner_id) {
 			setIsOwner(true)
 		};
 	};

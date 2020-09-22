@@ -10,7 +10,7 @@ const Join = () => {
     return (
         <div className="joinOuterContainer">
             <div className="joinInnerContainer">
-                <img src="https://i.imgur.com/pkTURwi.png"/>
+                <img src="https://i.imgur.com/pkTURwi.png" alt=""/>
                 <h1 className="heading-chat">chat</h1>
                 <div><input placeholder="Name" className="joinInput" type="text" onChange={(evt) => setName(evt.target.value)} /></div>
                 <div><input placeholder="Room" className="joinInput" type="text" onChange={(evt) => setRoom(evt.target.value)} /></div>

@@ -15,24 +15,6 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// import { BrowserRouter as Router } from "react-router-dom";
-
-// ReactDOM.render(
-//   <Router>
-
-//   <Auth0Provider
-//     domain="michaelcadima.us.auth0.com"
-//     clientId="BxbhuOPMVBUby2nr8gsfYzsBokR1q773"
-//     // redirectUri={`${window.location.origin}/profile`}
-//     redirectUri={`${window.location.origin}/`}
-
-//   >
-//     <App />
-//   </Auth0Provider>
-//   </Router>,
-
-//   document.getElementById("root")
-// );
 
 
 

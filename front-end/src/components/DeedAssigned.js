@@ -52,6 +52,7 @@ export default function DeedAssigned(props) {
 						</button> */}
 						{/* screen title */}
 						<h1 className="title is-size-1">Deed Assigned</h1>
+						<br/>
 					</div>
 					<div>
 						<section>
@@ -122,10 +123,14 @@ export default function DeedAssigned(props) {
 							<div className="columns mt-6">
 								<div className="column">
 									<section>
+										<br/>
+										<br/>
+										<br/>
 										<h1 className="title">{detailData.title}</h1>
 										<h2 className="subtitle">
 											{detailData.description}
 										</h2>
+										<br/>
 									</section>
 								</div>
 							</div>

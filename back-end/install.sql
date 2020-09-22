@@ -14,7 +14,7 @@ CREATE INDEX users_email ON users(email);
 CREATE TABLE deeds (
     id SERIAL PRIMARY KEY,
     category VARCHAR(50),
-    title VARCHAR(25),
+    title VARCHAR(100),
     description TEXT,
     date_created TIMESTAMP,
     date_todo TIMESTAMP,
