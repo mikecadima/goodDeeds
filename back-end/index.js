@@ -5,6 +5,8 @@ const cors = require('cors');
 const pool = require('./config');
 const app = express();
 
+app.use(express.static(__dir + '/public'))
+
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
@@ -19,6 +21,11 @@ app.use(mRouter);
 app.use(cors());
 app.use(express.json());
 
+
+// server is running
+app.get('/', function (req, res) {
+    res.send('Server is running.')
+});
 
 // add users to db
 app.post("/add_users", async (req, res) => {
