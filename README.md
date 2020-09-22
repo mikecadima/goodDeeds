@@ -291,6 +291,6 @@ export default function DeedsList() {
 ![goodDeeds _ preview](https://i.imgur.com/CDbEoT7.gif)
 
 
-```
-## Demo of search feature
+
+### Demo of search feature
 [![Fit Pals demo](http://img.youtube.com/vi/W_FmXOzzQYU/0.jpg)](https://youtu.be/W_FmXOzzQYU)
