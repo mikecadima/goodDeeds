@@ -7,7 +7,7 @@ const SignIn = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            fetch('http://localhost:5000/add_users', {
+            fetch('https://gooddeeds-server.herokuapp.com/add_users', {
                 method: 'POST',
                 body: JSON.stringify(user),
                 headers: { 'Content-type': "application/json" }
@@ -19,7 +19,7 @@ const SignIn = () => {
     useEffect(() => {
         if (isAuthenticated) {
             try {
-                fetch(`http://localhost:5000/user_profile/${user.email}`)
+                fetch(`https://gooddeeds-server.herokuapp.com/user_profile/${user.email}`)
                     .then(res => res.json())
                     .then((data) => {
                         window.sessionStorage.clear();
