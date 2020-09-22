@@ -288,7 +288,7 @@ export default function DeedsList() {
 
 ```
 ### Preview of the Site
-![goodDeeds _ preview](https://i.imgur.com/CDbEoT7.gifv)
+![goodDeeds _ preview](https://i.imgur.com/CDbEoT7.gif)
 
 
 ```
