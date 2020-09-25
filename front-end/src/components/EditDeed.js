@@ -24,7 +24,7 @@ export default function CreateDeed(props) {
         e.preventDefault();
         try {
             const body = { category, title, description, dateCreated, dateTodo, deedLocation, status, userId };
-            const response = await fetch(`https://gooddeeds-server.herokuapp.com/edit_deed/`, {
+            const response = await fetch(`http://localhost:5000/edit_deed/`, {
                 method: "PUT",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(body)

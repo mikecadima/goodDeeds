@@ -11,7 +11,7 @@ const PrivateProfile = (props) => {
     useEffect(() => {
         if (!props.userData) {
             try {
-                fetch(`https://gooddeeds-server.herokuapp.com/user_profile/${user.email}`)
+                fetch(`http://localhost:5000/user_profile/${user.email}`)
                     .then(res => res.json())
                     .then(data => {
                         setUserName(data.username)
@@ -38,7 +38,7 @@ const PrivateProfile = (props) => {
         e.preventDefault();
         try {
             const body = { name, userName, location, phone, shortBio, email };
-            const response = await fetch(`https://gooddeeds-server.herokuapp.com/update_user`, {
+            const response = await fetch(`http://localhost:5000/update_user`, {
                 method: "PUT",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(body)

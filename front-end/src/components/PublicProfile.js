@@ -8,7 +8,7 @@ const PublicProfile = (props) => {
     const [refreshRating, setRefreshRating] = useState(false);
 
     async function getProfileInfo() {
-		const resp = await fetch(`https://gooddeeds-server.herokuapp.com/user_profile/${props.match.params.email}`)
+		const resp = await fetch(`http://localhost:5000/user_profile/${props.match.params.email}`)
 		const userInfo = await resp.json();
         setProfileData(userInfo);
         setProfileLoaded(true);

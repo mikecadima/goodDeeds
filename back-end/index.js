@@ -5,8 +5,6 @@ const cors = require('cors');
 const pool = require('./config');
 const app = express();
 
-app.use(express.static(__dir + '/public'))
-
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
