@@ -20,6 +20,11 @@ app.use(cors());
 app.use(express.json());
 
 
+// server is running
+app.get('/', function (req, res) {
+    res.send('Server is running.')
+});
+
 // add users to db
 app.post("/add_users", async (req, res) => {
     try {

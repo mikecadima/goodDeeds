@@ -8,7 +8,7 @@ export default function AvailablDeeds() {
 	const [deeds, setDeeds] = useState([]);
 
 	async function getDeeds() {
-		const response = await fetch("https://gooddeeds-server.herokuapp.com/deeds?" + new URLSearchParams({
+		const response = await fetch("http://localhost:5000/deeds?" + new URLSearchParams({
 			status: 'open',
 			assignerId: window.sessionStorage.getItem('users_id')
 		}));
